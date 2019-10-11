@@ -9,7 +9,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-# 定义一个公共的方法
+# 定义一个公共的方法(递归函数)
 def str_to_json(str_json, str_json_before=""):
     if not isinstance(str_json, str):
         return "err: %s is not string" % str_json
