@@ -46,7 +46,16 @@ def str_to_json_final(str_json):
 
     return str_to_json(str_json) + str_json_last
 
-# test cases
+
+print '''
+    # =======================*********************************========================
+    # =======================*******下面是一些测试cases********=======================
+    # =======================*********************************========================
+'''
+# =======================*********************************========================
+# =======================*******下面是一些测试cases********=======================
+# =======================*********************************========================
+
 str_json = "{aaa:123,bbb:{ccc:456,ddd:{eee:789}},ggg:999,hhh:[{lll:123,kkk:666}]}"
 str_json_1 = '{code: 0, data: {edu: [{school: "北京林业大学", school_url: "http://www.taobao.com", school_url_1: "https://www.baidu.com", description: "A hundred miles", sid: 0, sdegree: "1", v: "2006-01-01", department: "统计学"}], name: "qa123456", exp: [{company_info: { name: "alibaba", cid: 2938}, description: "be a hero", company: "alibaba", worktime: "10", v: "2018-07-01", position: ">测试工程师"}], mem_st: 0, judge: 0, position: "测试工程师", company: "alibaba", mem_id: 0, mmid: "mmid"}, last_url: "https://www.163.com"}'
 
