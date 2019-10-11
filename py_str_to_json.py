@@ -10,12 +10,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 # 定义一个公共的方法(递归函数)
-def str_to_json(str_json, str_json_before=""):
-    if not isinstance(str_json, str):
-        return "err: %s is not string" % str_json
-    str_json = str_json.encode("utf-8")
-    str_json_after=""
-    i = 0
+def str_to_json(str_json, str_json_before="", str_json_after="", i=0):
     for s in str_json:
         if s in ["{", ","]:
             str_json_before = str_json_before + str_json[:i+1].strip() + '"'
@@ -35,6 +30,11 @@ def str_to_json(str_json, str_json_before=""):
     return str_json_before + str_json_after
 
 def str_to_json_final(str_json):
+    if not isinstance(str_json, str):
+        ret = {"err_code": 9527}
+        ret["e_msg"] = "err: %s is not string" % str(str_json)
+        return json.dumps(ret)
+    str_json = str_json.encode("utf-8")
     # 此处注意最后一个可能是对url的情况，可能还有其他格式的，todo...
     str_json_last = str_json.split(":")[-1].strip()
     if str_json_last[-2][-5:-1] == '"http':
@@ -59,6 +59,11 @@ print '''
 str_json = "{aaa:123,bbb:{ccc:456,ddd:{eee:789}},ggg:999,hhh:[{lll:123,kkk:666}]}"
 str_json_1 = '{code: 0, data: {edu: [{school: "北京林业大学", school_url: "http://www.taobao.com", school_url_1: "https://www.baidu.com", description: "A hundred miles", sid: 0, sdegree: "1", v: "2006-01-01", department: "统计学"}], name: "qa123456", exp: [{company_info: { name: "alibaba", cid: 2938}, description: "be a hero", company: "alibaba", worktime: "10", v: "2018-07-01", position: ">测试工程师"}], mem_st: 0, judge: 0, position: "测试工程师", company: "alibaba", mem_id: 0, mmid: "mmid"}, last_url: "https://www.163.com"}'
 
+
+print "=======================【case_00】start test ========================="
+print json.loads(str_to_json_final(123))
+print "=======================【case_00】test  done ========================="
+
 print "=======================【case_01】start test ========================="
 print json.loads(str_to_json_final(str_json))
 print "=======================【case_01】test  done ========================="
@@ -74,7 +79,9 @@ qa_tester@localhost  /maimai/study/github/python_tools   master ● 
     # =======================*********************************========================
     # =======================*******下面是一些测试cases********=======================
     # =======================*********************************========================
-
+=======================【case_00】start test =========================
+{u'e_msg': u'err: 123 is not string', u'err_code': 9527}
+=======================【case_00】test  done =========================
 =======================【case_01】start test =========================
 {u'ggg': 999, u'hhh': [{u'kkk': 666, u'lll': 123}], u'aaa': 123, u'bbb': {u'ccc': 456, u'ddd': {u'eee': 789}}}
 =======================【case_01】test  done =========================
