@@ -66,3 +66,19 @@ print "=======================【case_01】test  done ========================="
 print "=======================【case_02】start test ========================="
 print json.loads(str_to_json_final(str_json_1))
 print "=======================【case_02】test  done ========================="
+
+'''
+最终你将在控制台看到如下信息：
+qa_tester@localhost  /maimai/study/github/python_tools   master ●  python py_str_to_json.py
+
+    # =======================*********************************========================
+    # =======================*******下面是一些测试cases********=======================
+    # =======================*********************************========================
+
+=======================【case_01】start test =========================
+{u'ggg': 999, u'hhh': [{u'kkk': 666, u'lll': 123}], u'aaa': 123, u'bbb': {u'ccc': 456, u'ddd': {u'eee': 789}}}
+=======================【case_01】test  done =========================
+=======================【case_02】start test =========================
+{u'last_url': u'https://www.163.com', u'code': 0, u'data': {u'name': u'qa123456', u'mem_st': 0, u'company': u'alibaba', u'exp': [{u'company_info': {u'name': u'alibaba', u'cid': 2938}, u'description': u'be a hero', u'company': u'alibaba', u'worktime': u'10', u'v': u'2018-07-01', u'position': u'>\u6d4b\u8bd5\u5de5\u7a0b\u5e08'}], u'edu': [{u'school': u'\u5317\u4eac\u6797\u4e1a\u5927\u5b66', u'school_url': u'http://www.taobao.com', u'description': u'A hundred miles', u'v': u'2006-01-01', u'school_url_1': u'https://www.baidu.com', u'sdegree': u'1', u'sid': 0, u'department': u'\u7edf\u8ba1\u5b66'}], u'judge': 0, u'position': u'\u6d4b\u8bd5\u5de5\u7a0b\u5e08', u'mem_id': 0, u'mmid': u'mmid'}}
+=======================【case_02】test  done =========================
+'''
