@@ -35,11 +35,20 @@ def str_to_json(str_json, str_json_before=""):
     return str_json_before + str_json_after
 
 def str_to_json_final(str_json):
-    return str_to_json(str_json) + str_json.split(":")[-1].strip()
+    # 此处注意最后一个可能是对url的情况，可能还有其他格式的，todo...
+    str_json_last = str_json.split(":")[-1].strip()
+    if str_json_last[-2][-5:-1] == '"http':
+        str_json_last = str_json_last[-2][-5:-1] + ":" + str_json_last[-1]
+    elif str_json_last[-2][-6:-1] == '"https':
+        str_json_last = str_json_last[-2][-6:-1] + ":" + str_json_last[-1]
+    else:
+        str_json_last = str_json_last
+
+    return str_to_json(str_json) + str_json_last
 
 # test cases
 str_json = "{aaa:123,bbb:{ccc:456,ddd:{eee:789}},ggg:999,hhh:[{lll:123,kkk:666}]}"
-str_json_1 = '{code: 0, data: {edu: [{school: "北京林业大学", school_url: "http://www.taobao.com", school_url_1: "https://www.baidu.com", description: "A hundred miles", sid: 0, sdegree: "1", v: "2006-01-01", department: "统计学"}], name: "qa123456", exp: [{company_info: { name: "alibaba", cid: 2938}, description: "be a hero", company: "alibaba", worktime: "10", v: "2018-07-01", position: ">测试工程师"}], mem_st: 0, judge: 0, position: "测试工程师", company: "alibaba", mem_id: 0, mmid: "mmid"}}'
+str_json_1 = '{code: 0, data: {edu: [{school: "北京林业大学", school_url: "http://www.taobao.com", school_url_1: "https://www.baidu.com", description: "A hundred miles", sid: 0, sdegree: "1", v: "2006-01-01", department: "统计学"}], name: "qa123456", exp: [{company_info: { name: "alibaba", cid: 2938}, description: "be a hero", company: "alibaba", worktime: "10", v: "2018-07-01", position: ">测试工程师"}], mem_st: 0, judge: 0, position: "测试工程师", company: "alibaba", mem_id: 0, mmid: "mmid"}, last_url: "https://www.163.com"}'
 
 print json.loads(str_to_json_final(str_json))
 print json.loads(str_to_json_final(str_json_1))
